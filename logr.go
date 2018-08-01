@@ -8,6 +8,7 @@
 // This is a BETA grade API.  Until there is a significant 2nd implementation,
 // I don't really know how it will change.
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //
 // The logging specifically makes it non-trivial to use format strings, to encourage
@@ -73,6 +74,8 @@
 // Variable information can then be attached using key/value pairs.  Keys are arbitrary strings,
 // and values may be any Go object.
 >>>>>>> parent of b8c64da... fixup! Structured Logging
+=======
+>>>>>>> parent of c62468b... Structured Logging
 package logr
 
 // TODO: consider structured logging, a la uber-go/zap
@@ -100,11 +103,15 @@ type Logger interface {
 	InfoLogger
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of c62468b... Structured Logging
 	// Error logs a error message.  This is behaviorally akin to fmt.Print.
 	Error(args ...interface{})
 
 	// Errorf logs a formatted error message.
 	Errorf(format string, args ...interface{})
+<<<<<<< HEAD
 =======
 	// Error logs an error, with the given message and key/value pairs as context.
 	// It functions as a convinience wrapper around Info, and generally behaves
@@ -117,11 +124,14 @@ type Logger interface {
 	// triggered this log line, if present.
 	Error(err error, msg string, keysAndValues ...interface{})
 >>>>>>> parent of b8c64da... fixup! Structured Logging
+=======
+>>>>>>> parent of c62468b... Structured Logging
 
 	// V returns an InfoLogger value for a specific verbosity level.  A higher
 	// verbosity level means a log message is less important.
 	V(level int) InfoLogger
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	// NewWithPrefix returns a Logger which prefixes all messages.
 	NewWithPrefix(prefix string) Logger
@@ -136,4 +146,8 @@ type Logger interface {
 	// not contain periods, but are otherwise freeform.
 	WithName(name string) Logger
 >>>>>>> parent of b8c64da... fixup! Structured Logging
+=======
+	// NewWithPrefix returns a Logger which prefixes all messages.
+	NewWithPrefix(prefix string) Logger
+>>>>>>> parent of c62468b... Structured Logging
 }
