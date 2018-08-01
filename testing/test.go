@@ -3,7 +3,7 @@ package testing
 import (
 	"testing"
 
-	"github.com/go-logr/logr"
+	"github.com/thockin/logr"
 )
 
 // TestLogger is a logr.Logger that prints through a testing.T object.
@@ -14,7 +14,11 @@ type TestLogger struct {
 
 var _ logr.Logger = TestLogger{}
 
-func (_ TestLogger) Info(_ string, _ ...interface{}) {
+func (_ TestLogger) Info(_ ...interface{}) {
+	// Do nothing.
+}
+
+func (_ TestLogger) Infof(_ string, _ ...interface{}) {
 	// Do nothing.
 }
 
@@ -22,18 +26,18 @@ func (_ TestLogger) Enabled() bool {
 	return false
 }
 
-func (log TestLogger) Error(err error, msg string, args ...interface{}) {
-	log.T.Logf("%s: %v -- %v", msg, err, args)
+func (log TestLogger) Error(args ...interface{}) {
+	log.T.Log(args...)
+}
+
+func (log TestLogger) Errorf(format string, args ...interface{}) {
+	log.T.Logf(format, args...)
 }
 
 func (log TestLogger) V(v int) logr.InfoLogger {
 	return log
 }
 
-func (log TestLogger) WithName(_ string) logr.Logger {
-	return log
-}
-
-func (log TestLogger) WithTags(_ ...interface{}) logr.Logger {
+func (log TestLogger) NewWithPrefix(_ string) logr.Logger {
 	return log
 }
